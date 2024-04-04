@@ -1,0 +1,187 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} UI Tables {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header">
+        <h4 class="card-title">Features CSV File</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <div id="features_table">
+          </div>
+         </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header">
+        <h4 class="card-title">Stores CSV File</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <div id="stores_table">
+          </div>
+         </div>
+      </div>
+    </div>
+  <div class="col-md-12">
+      <div class="card ">
+        <div class="card-header">
+          <h4 class="card-title">Train CSV File</h4>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <div id="train_table">
+            </div>
+           </div>
+        </div>
+      </div>
+  </div>
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header">
+        <h4 class="card-title">Test CSV File</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <div id="test_table">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+  $(document).ready(function(){
+    $.ajax({
+     url:"https://raw.githubusercontent.com/manojbahadur/HTML/master/features_mj.csv",
+     dataType:"text",
+     success:function(data)
+     {
+      var employee_data = data.split(/\r?\n|\r/);
+      var table_data = '<table class="table table-bordered table-striped">';
+      for(var count = 0; count<6; count++)
+      {
+       var cell_data = employee_data[count].split(",");
+       table_data += '<tr>';
+       for(var cell_count=0; cell_count<cell_data.length; cell_count++)
+       {
+        if(count === 0)
+        {
+         table_data += '<th>'+cell_data[cell_count]+'</th>';
+        }
+        else
+        {
+         table_data += '<td>'+cell_data[cell_count]+'</td>';
+        }
+       }
+       table_data += '</tr>';
+      }
+      table_data += '</table>';
+      $('#features_table').html(table_data);
+     }
+    });
+    
+    $.ajax({
+      url:"https://raw.githubusercontent.com/manojbahadur/HTML/master/stores.csv",
+      dataType:"text",
+      success:function(data)
+      {
+       var employee_data = data.split(/\r?\n|\r/);
+       var table_data = '<table class="table table-bordered table-striped">';
+       for(var count = 0; count<6; count++)
+       {
+        var cell_data = employee_data[count].split(",");
+        table_data += '<tr>';
+        for(var cell_count=0; cell_count<cell_data.length; cell_count++)
+        {
+         if(count === 0)
+         {
+          table_data += '<th>'+cell_data[cell_count]+'</th>';
+         }
+         else
+         {
+          table_data += '<td>'+cell_data[cell_count]+'</td>';
+         }
+        }
+        table_data += '</tr>';
+       }
+       table_data += '</table>';
+       $('#stores_table').html(table_data);
+      }
+     });
+
+     $.ajax({
+      url:"https://raw.githubusercontent.com/manojbahadur/HTML/master/train.csv",
+      dataType:"text",
+      success:function(data)
+      {
+       var employee_data = data.split(/\r?\n|\r/);
+       var table_data = '<table class="table table-bordered table-striped">';
+       for(var count = 0; count<6; count++)
+       {
+        var cell_data = employee_data[count].split(",");
+        table_data += '<tr>';
+        for(var cell_count=0; cell_count<cell_data.length; cell_count++)
+        {
+         if(count === 0)
+         {
+          table_data += '<th>'+cell_data[cell_count]+'</th>';
+         }
+         else
+         {
+          table_data += '<td>'+cell_data[cell_count]+'</td>';
+         }
+        }
+        table_data += '</tr>';
+       }
+       table_data += '</table>';
+       $('#train_table').html(table_data);
+      }
+     });
+
+     $.ajax({
+      url:"https://raw.githubusercontent.com/manojbahadur/HTML/master/test.csv",
+      dataType:"text",
+      success:function(data)
+      {
+       var employee_data = data.split(/\r?\n|\r/);
+       var table_data = '<table class="table table-bordered table-striped">';
+       for(var count = 0; count<6; count++)
+       {
+        var cell_data = employee_data[count].split(",");
+        table_data += '<tr>';
+        for(var cell_count=0; cell_count<cell_data.length; cell_count++)
+        {
+         if(count === 0)
+         {
+          table_data += '<th>'+cell_data[cell_count]+'</th>';
+         }
+         else
+         {
+          table_data += '<td>'+cell_data[cell_count]+'</td>';
+         }
+        }
+        table_data += '</tr>';
+       }
+       table_data += '</table>';
+       $('#test_table').html(table_data);
+      }
+     });
+  });
+  </script>
+{% endblock javascripts %}
